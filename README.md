@@ -126,7 +126,11 @@ Entra 앱 등록 자체는 기본 설정에서 **일반 사용자도 가능합�
 
 ### 2. SharePoint 사이트
 
-리스트를 담을 사이트 하나만 만들면 됩니다. 주소의 `/sites/<이름>` 부분이 `VITE_SHAREPOINT_SITE_PATH` 입니다.
+**팀 채널 탭만 쓴다면 아무것도 안 해도 됩니다.** 팀에 이미 딸려 있는 SharePoint 사이트에
+팀별로 나뉘어 저장되고, 목록 4개는 첫 사용 시 자동 생성됩니다.
+
+그룹 채팅·개인 탭에서도 쓰려면 폴백용 사이트 하나를 만들고
+주소의 `/sites/<이름>` 부분을 `VITE_SHAREPOINT_SITE_PATH` 에 넣습니다.
 호스트명은 앱이 Graph 로 자동 조회하므로 적을 필요가 없습니다. **리스트 4개는 앱이 첫 실행 때 자동 생성합니다**
 (`MAS_Meetings`, `MAS_Participants`, `MAS_Availabilities`, `MAS_Settings` — 스키마는 `src/services/sharepointSchema.ts`).
 

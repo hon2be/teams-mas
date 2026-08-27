@@ -50,19 +50,15 @@ const resolveHostname = async (): Promise<string> => {
 /**
  * 데이터를 담을 사이트를 정한다.
  *
- * 1. VITE_SHAREPOINT_SITE_PATH 가 있으면 그 사이트 (모든 채팅·채널이 한곳을 공유)
- * 2. 팀(채널) 탭이면 그 팀의 M365 그룹에 딸린 SharePoint 사이트 — 설정 불필요
+ * 1. 팀(채널) 탭이면 그 팀의 M365 그룹 사이트 — 팀마다 자기 데이터를 갖는다
+ * 2. 아니면 VITE_SHAREPOINT_SITE_PATH 로 지정한 공용 사이트
  *
- * 그룹 채팅과 개인 탭에는 딸린 사이트가 없어서 1번이 필요하다.
+ * 팀 사이트를 먼저 보는 이유: 전사 배포 시 팀마다 분리 저장되어야
+ * 권한이 자연스럽게 팀 경계를 따르고, 사이트 하나에 전사 데이터가 몰리지 않는다.
+ * 공용 사이트는 딸린 사이트가 없는 그룹 채팅·개인 탭의 폴백으로만 쓰인다.
  */
 const getSiteId = (): Promise<string> => {
   siteIdPromise ??= (async () => {
-    if (SHAREPOINT_SITE_PATH) {
-      const hostname = await resolveHostname()
-      const site = await graph<{ id: string }>(`/sites/${hostname}:${SHAREPOINT_SITE_PATH}`, SITES)
-      return site.id
-    }
-
     const { groupId } = getRuntimeContext()
     if (groupId) {
       const site = await graph<{ id: string }>(`/groups/${groupId}/sites/root?$select=id`, {
@@ -71,8 +67,15 @@ const getSiteId = (): Promise<string> => {
       return site.id
     }
 
+    if (SHAREPOINT_SITE_PATH) {
+      const hostname = await resolveHostname()
+      const site = await graph<{ id: string }>(`/sites/${hostname}:${SHAREPOINT_SITE_PATH}`, SITES)
+      return site.id
+    }
+
     throw new Error(
-      '저장할 SharePoint 사이트를 정할 수 없습니다. 팀 채널 탭이 아니면 VITE_SHAREPOINT_SITE_PATH 를 지정하세요.',
+      '저장할 SharePoint 사이트를 정할 수 없습니다. 팀 채널 탭에서 열거나, ' +
+        'VITE_SHAREPOINT_SITE_PATH 에 공용 사이트를 지정하세요.',
     )
   })()
   return siteIdPromise
