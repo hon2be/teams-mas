@@ -35,3 +35,4 @@ example
 
 # 조직 식별 정보가 담긴 로컬 전용 문서
 *.local.md
+ADMIN-REQUEST.md

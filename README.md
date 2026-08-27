@@ -102,7 +102,6 @@ brk-multihub://<배포도메인>     ← NAA. Teams 가 브로커 역할을 하�
 **Grant admin consent** 를 눌러야 합니다.
 
 > 클릭 순서까지 담은 설정 가이드는 [`SETUP.md`](SETUP.md) 에 있습니다.
-> 관리자에게 전달할 요청 문서는 [`ADMIN-REQUEST.md`](ADMIN-REQUEST.md) 입니다.
 
 ### 권한이 부족할 때 — 3단계로 나눠 쓰기
 
