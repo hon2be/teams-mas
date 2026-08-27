@@ -25,9 +25,14 @@ export const ChatStorageNotice = () => {
         이 채팅의 일정은 <strong>{STORAGE_SITE_NAME}</strong> 팀에 저장됩니다. 가입하지 않으면
         내가 입력한 시간이 내 화면에만 남고, 다른 참석자의 시간도 보이지 않습니다.
       </p>
+      <p className="hint">
+        가입: Teams 왼쪽 <strong>팀</strong> → <strong>팀 참가 또는 만들기</strong> →{' '}
+        <strong>{STORAGE_SITE_NAME}</strong> 검색 → 참가.
+        공개 팀이면 승인 없이 바로 참가됩니다.
+      </p>
       {STORAGE_SITE_URL && (
         <p className="hint">
-          가입/접근 요청:{' '}
+          저장 위치:{' '}
           <a href={STORAGE_SITE_URL} target="_blank" rel="noreferrer">
             {STORAGE_SITE_URL}
           </a>
