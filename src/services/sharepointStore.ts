@@ -69,8 +69,21 @@ const getSiteId = (): Promise<string> => {
 
     if (SHAREPOINT_SITE_PATH) {
       const hostname = await resolveHostname()
-      const site = await graph<{ id: string }>(`/sites/${hostname}:${SHAREPOINT_SITE_PATH}`, SITES)
-      return site.id
+      try {
+        const site = await graph<{ id: string }>(`/sites/${hostname}:${SHAREPOINT_SITE_PATH}`, SITES)
+        return site.id
+      } catch (cause: unknown) {
+        // 공용 사이트에 접근 권한이 없는 사용자가 채팅 탭을 열면 여기로 온다.
+        // Graph 원문(itemNotFound/accessDenied)만 보여주면 원인을 알 수 없다.
+        if (cause instanceof GraphError && (cause.status === 403 || cause.status === 404)) {
+          throw new Error(
+            `공용 저장소 사이트(${SHAREPOINT_SITE_PATH})에 접근할 수 없습니다. ` +
+              '이 사이트에 접근 권한이 있어야 채팅에서 일정을 공유할 수 있습니다. ' +
+              '팀 채널에서는 해당 팀 사이트를 쓰므로 이 설정과 무관하게 동작합니다.',
+          )
+        }
+        throw cause
+      }
     }
 
     throw new Error(
