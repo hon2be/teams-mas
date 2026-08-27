@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192">
+  <rect width="192" height="192" fill="#4643D9"/>
+  <g fill="#ffffff">
+    <!-- 상단 바: 회의 헤더 -->
+    <rect x="36" y="40" width="120" height="10" rx="5" opacity="0.55"/>
+    <!-- 타임테이블 3행 x 6열. 채워진 칸이 참석 가능 시간. -->
+    <rect x="36" y="68"  width="16" height="16" rx="4" opacity="0.35"/>
+    <rect x="57" y="68"  width="16" height="16" rx="4"/>
+    <rect x="78" y="68"  width="16" height="16" rx="4"/>
+    <rect x="99" y="68"  width="16" height="16" rx="4" opacity="0.35"/>
+    <rect x="120" y="68" width="16" height="16" rx="4"/>
+    <rect x="141" y="68" width="16" height="16" rx="4" opacity="0.35"/>
+
+    <rect x="36" y="90"  width="16" height="16" rx="4" opacity="0.35"/>
+    <rect x="57" y="90"  width="16" height="16" rx="4"/>
+    <rect x="78" y="90"  width="16" height="16" rx="4"/>
+    <rect x="99" y="90"  width="16" height="16" rx="4"/>
+    <rect x="120" y="90" width="16" height="16" rx="4"/>
+    <rect x="141" y="90" width="16" height="16" rx="4" opacity="0.35"/>
+
+    <rect x="36" y="112" width="16" height="16" rx="4"/>
+    <rect x="57" y="112" width="16" height="16" rx="4"/>
+    <rect x="78" y="112" width="16" height="16" rx="4"/>
+    <rect x="99" y="112" width="16" height="16" rx="4" opacity="0.35"/>
+    <rect x="120" y="112" width="16" height="16" rx="4"/>
+    <rect x="141" y="112" width="16" height="16" rx="4" opacity="0.35"/>
+  </g>
+  <!-- 추천된 구간을 감싸는 하이라이트 -->
+  <rect x="52" y="63" width="47" height="70" rx="10" fill="none" stroke="#47BFFF" stroke-width="6"/>
+</svg>
