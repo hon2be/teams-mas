@@ -1,4 +1,9 @@
-import { SHAREPOINT_HOSTNAME, SHAREPOINT_SITE_PATH, SITES_SCOPES } from '../lib/config.ts'
+import {
+  SHAREPOINT_HOSTNAME,
+  SHAREPOINT_SITE_PATH,
+  SITES_SCOPES,
+  STORAGE_SITE_NAME,
+} from '../lib/config.ts'
 import { nextStatus } from '../lib/lifecycle.ts'
 import { todayIso } from '../lib/dates.ts'
 import { MeetingStatus, type Meeting, type ParticipantRole } from '../types/models.ts'
@@ -77,9 +82,9 @@ const getSiteId = (): Promise<string> => {
         // Graph 원문(itemNotFound/accessDenied)만 보여주면 원인을 알 수 없다.
         if (cause instanceof GraphError && (cause.status === 403 || cause.status === 404)) {
           throw new Error(
-            `공용 저장소 사이트(${SHAREPOINT_SITE_PATH})에 접근할 수 없습니다. ` +
-              '이 사이트에 접근 권한이 있어야 채팅에서 일정을 공유할 수 있습니다. ' +
-              '팀 채널에서는 해당 팀 사이트를 쓰므로 이 설정과 무관하게 동작합니다.',
+            `${STORAGE_SITE_NAME} 팀에 가입해야 입력한 시간이 서로에게 공유됩니다. ` +
+              `이 채팅의 일정은 ${STORAGE_SITE_NAME} 팀에 저장되는데 접근 권한이 없습니다. ` +
+              '팀 채널에서 쓰는 경우에는 가입이 필요 없습니다.',
           )
         }
         throw cause

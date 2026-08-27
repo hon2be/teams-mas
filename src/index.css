@@ -485,3 +485,12 @@ html[data-theme="contrast"] {
   justify-content: space-between;
   gap: 12px;
 }
+
+.banner-info {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, var(--paper));
+}
+
+.banner-info p {
+  margin: 0 0 4px;
+}

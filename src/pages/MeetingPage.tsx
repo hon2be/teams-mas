@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { AvailabilityOverview } from '../components/AvailabilityOverview.tsx'
+import { ChatStorageNotice } from '../components/ChatStorageNotice.tsx'
 import { MeetingEditor } from '../components/MeetingEditor.tsx'
 import { RecommendationCards } from '../components/RecommendationCards.tsx'
 import { TimeTable } from '../components/TimeTable.tsx'
@@ -295,6 +296,8 @@ export const MeetingPage = () => {
           </Link>
         </div>
       </header>
+
+      <ChatStorageNotice />
 
       {confirmedMeeting.teamsJoinUrl && (
         <div className="banner">

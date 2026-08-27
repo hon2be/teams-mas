@@ -17,6 +17,18 @@ export const SHAREPOINT_HOSTNAME = read(import.meta.env.VITE_SHAREPOINT_HOSTNAME
 /** 예: /sites/MAS — 어느 사이트를 쓸지는 지정해야 한다. */
 export const SHAREPOINT_SITE_PATH = read(import.meta.env.VITE_SHAREPOINT_SITE_PATH)
 
+/**
+ * 공용 저장소로 쓰는 팀/사이트의 이름. 경로에서 뽑아낸다.
+ * 채팅에서 참여하려면 이 팀에 가입해야 한다는 안내에 쓰인다.
+ */
+export const STORAGE_SITE_NAME = SHAREPOINT_SITE_PATH.split('/').filter(Boolean).pop() ?? ''
+
+/** 접근 요청을 보낼 수 있는 사이트 주소. 호스트명을 모르면 빈 문자열. */
+export const STORAGE_SITE_URL =
+  SHAREPOINT_HOSTNAME && SHAREPOINT_SITE_PATH
+    ? `https://${SHAREPOINT_HOSTNAME}${SHAREPOINT_SITE_PATH}`
+    : ''
+
 export const GRAPH_BASE = 'https://graph.microsoft.com/v1.0'
 
 /**

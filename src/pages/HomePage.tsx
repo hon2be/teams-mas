@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { ChatStorageNotice } from '../components/ChatStorageNotice.tsx'
 import { formatKoreanDate } from '../lib/dates.ts'
 import { useAsync } from '../lib/useAsync.ts'
 import { isMockStore, store } from '../services/activeStore.ts'
@@ -27,6 +28,8 @@ export const HomePage = () => {
           회의 만들기
         </Link>
       </header>
+
+      <ChatStorageNotice />
 
       {isMockStore() && (
         <div className="banner banner-warn">
